@@ -2,7 +2,9 @@
 
 ## Introduction:
 
-This project is created to understand the working of QR Code Scanner and also to have a ready made component for integration in the projects.
+This project is created to understand the working of QR Code Scanner and also to have a ready made component for integration in the projects. 
+
+If you want to implement it straight away, you can make copy the handler in the project and jump to the Usage part.
 
 ----------------------------------------------------------------------------------------------------
 
