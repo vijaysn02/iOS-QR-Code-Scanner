@@ -109,6 +109,7 @@ There are two important section of this handler. (i) Initialization and Scanning
     }
 ```
 
+
 ----------------------------------------------------------------------------------------------------
 
 ## Helper Part
@@ -123,4 +124,17 @@ There are two important section of this handler. (i) Initialization and Scanning
 
 ```
     Router.navigateToQRScanner(parentViewController: self)
+```
+
+### Subscribe to below delegate to get message from QRScanner ViewController.
+
+```
+//MARK: - QR Scanner - Delegates - Subscribing to scanning events
+extension ViewController:QRScannerDelegate {
+    
+    func scannedResult(text: String) {
+        Toast.showasync(message: text, controller: self)
+    }
+    
+}
 ```
