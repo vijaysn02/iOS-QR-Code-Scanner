@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="awQ-W5-6dL">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Scanner View Controller-->
+        <scene sceneID="6wn-3d-ZSF">
+            <objects>
+                <viewController storyboardIdentifier="QRScannerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="awQ-W5-6dL" customClass="QRScannerViewController" customModule="QR_Code_Scanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YWR-D2-ViD" customClass="AccentBackgroundView" customModule="QR_Code_Scanner" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R7B-4r-lew" customClass="NavigationView" customModule="QR_Code_Scanner" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Kc-Ab-RSK">
+                                        <rect key="frame" x="20" y="39" width="19.5" height="18"/>
+                                        <state key="normal" backgroundImage="clear" catalog="system"/>
+                                        <connections>
+                                            <action selector="backButtonClicked:" destination="awQ-W5-6dL" eventType="touchUpInside" id="dGq-Bx-mDc"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QRScanner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Us0-aQ-iP5" customClass="NavigationTitleLabel" customModule="QR_Code_Scanner" customModuleProvider="target">
+                                        <rect key="frame" x="164" y="38" width="86.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Us0-aQ-iP5" firstAttribute="centerX" secondItem="R7B-4r-lew" secondAttribute="centerX" id="KB3-zz-qLp"/>
+                                    <constraint firstItem="Us0-aQ-iP5" firstAttribute="centerY" secondItem="R7B-4r-lew" secondAttribute="centerY" multiplier="1.2" id="Rc4-zO-HFv"/>
+                                    <constraint firstAttribute="height" constant="80" id="bh8-YY-nCq"/>
+                                    <constraint firstItem="8Kc-Ab-RSK" firstAttribute="centerY" secondItem="R7B-4r-lew" secondAttribute="centerY" multiplier="1.2" id="cK9-fs-jA2"/>
+                                    <constraint firstItem="8Kc-Ab-RSK" firstAttribute="leading" secondItem="R7B-4r-lew" secondAttribute="leading" constant="20" id="ogB-En-Q9W"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Tv-mj-pEj">
+                                <rect key="frame" x="0.0" y="80" width="414" height="782"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="als-os-RDB" firstAttribute="trailing" secondItem="8Tv-mj-pEj" secondAttribute="trailing" id="5uJ-ag-n1a"/>
+                            <constraint firstItem="R7B-4r-lew" firstAttribute="top" secondItem="YWR-D2-ViD" secondAttribute="top" id="9xr-VR-5kF"/>
+                            <constraint firstItem="R7B-4r-lew" firstAttribute="trailing" secondItem="als-os-RDB" secondAttribute="trailing" id="QxP-FJ-NWe"/>
+                            <constraint firstItem="R7B-4r-lew" firstAttribute="leading" secondItem="als-os-RDB" secondAttribute="leading" id="SNN-pI-3av"/>
+                            <constraint firstItem="8Tv-mj-pEj" firstAttribute="top" secondItem="R7B-4r-lew" secondAttribute="bottom" id="oDZ-QO-gdB"/>
+                            <constraint firstItem="8Tv-mj-pEj" firstAttribute="leading" secondItem="als-os-RDB" secondAttribute="leading" id="upG-rv-kfQ"/>
+                            <constraint firstItem="als-os-RDB" firstAttribute="bottom" secondItem="8Tv-mj-pEj" secondAttribute="bottom" id="w39-52-tML"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="als-os-RDB"/>
+                    </view>
+                    <connections>
+                        <outlet property="scannerView" destination="8Tv-mj-pEj" id="ptZ-AY-TZb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZxC-3t-sFy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="134"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="clear" catalog="system" width="64" height="56"/>
+    </resources>
+</document>

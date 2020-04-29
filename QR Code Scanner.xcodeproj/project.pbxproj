@@ -13,6 +13,10 @@
 		5008F31724594DAC00844919 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5008F31524594DAC00844919 /* Main.storyboard */; };
 		5008F31924594DB300844919 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5008F31824594DB300844919 /* Assets.xcassets */; };
 		5008F31C24594DB300844919 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5008F31A24594DB300844919 /* LaunchScreen.storyboard */; };
+		5008F329245955B300844919 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5008F328245955B300844919 /* Toast.swift */; };
+		5008F32B24595D4A00844919 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5008F32A24595D4A00844919 /* Router.swift */; };
+		5008F33624595E4600844919 /* QRScanner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5008F33524595E4600844919 /* QRScanner.storyboard */; };
+		5008F33824595E5200844919 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5008F33724595E5200844919 /* QRScannerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		5008F31824594DB300844919 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5008F31B24594DB300844919 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5008F31D24594DB300844919 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5008F328245955B300844919 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		5008F32A24595D4A00844919 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		5008F33524595E4600844919 /* QRScanner.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QRScanner.storyboard; sourceTree = "<group>"; };
+		5008F33724595E5200844919 /* QRScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +64,67 @@
 		5008F30E24594DAC00844919 /* QR Code Scanner */ = {
 			isa = PBXGroup;
 			children = (
-				5008F30F24594DAC00844919 /* AppDelegate.swift */,
-				5008F31124594DAC00844919 /* SceneDelegate.swift */,
-				5008F31324594DAC00844919 /* ViewController.swift */,
-				5008F31524594DAC00844919 /* Main.storyboard */,
-				5008F31824594DB300844919 /* Assets.xcassets */,
-				5008F31A24594DB300844919 /* LaunchScreen.storyboard */,
+				5008F327245955A600844919 /* Helper */,
+				5008F32624594EBE00844919 /* Handler */,
+				5008F32324594E3300844919 /* Delegate */,
+				5008F32424594E7100844919 /* View Controller */,
+				5008F32524594E8400844919 /* Resources */,
 				5008F31D24594DB300844919 /* Info.plist */,
 			);
 			path = "QR Code Scanner";
+			sourceTree = "<group>";
+		};
+		5008F32324594E3300844919 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				5008F30F24594DAC00844919 /* AppDelegate.swift */,
+				5008F31124594DAC00844919 /* SceneDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		5008F32424594E7100844919 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5008F31324594DAC00844919 /* ViewController.swift */,
+				5008F31524594DAC00844919 /* Main.storyboard */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		5008F32524594E8400844919 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5008F31824594DB300844919 /* Assets.xcassets */,
+				5008F31A24594DB300844919 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5008F32624594EBE00844919 /* Handler */ = {
+			isa = PBXGroup;
+			children = (
+				5008F32C24595DD200844919 /* QR Scanner */,
+			);
+			path = Handler;
+			sourceTree = "<group>";
+		};
+		5008F327245955A600844919 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				5008F328245955B300844919 /* Toast.swift */,
+				5008F32A24595D4A00844919 /* Router.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		5008F32C24595DD200844919 /* QR Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				5008F33524595E4600844919 /* QRScanner.storyboard */,
+				5008F33724595E5200844919 /* QRScannerViewController.swift */,
+			);
+			path = "QR Scanner";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +185,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5008F33624595E4600844919 /* QRScanner.storyboard in Resources */,
 				5008F31C24594DB300844919 /* LaunchScreen.storyboard in Resources */,
 				5008F31924594DB300844919 /* Assets.xcassets in Resources */,
 				5008F31724594DAC00844919 /* Main.storyboard in Resources */,
@@ -139,6 +200,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5008F31424594DAC00844919 /* ViewController.swift in Sources */,
+				5008F329245955B300844919 /* Toast.swift in Sources */,
+				5008F33824595E5200844919 /* QRScannerViewController.swift in Sources */,
+				5008F32B24595D4A00844919 /* Router.swift in Sources */,
 				5008F31024594DAC00844919 /* AppDelegate.swift in Sources */,
 				5008F31224594DAC00844919 /* SceneDelegate.swift in Sources */,
 			);
@@ -285,6 +349,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7XG9VTZMR8;
 				INFOPLIST_FILE = "QR Code Scanner/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -302,6 +367,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7XG9VTZMR8;
 				INFOPLIST_FILE = "QR Code Scanner/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
