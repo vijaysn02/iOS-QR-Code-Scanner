@@ -2,44 +2,107 @@
 
 ## Introduction:
 
-This project is created to understand the working of AV player and also to have a ready made component for integration in the projects.
+This project is created to understand the working of QR Code Scanner and also to have a ready made component for integration in the projects.
 
 ----------------------------------------------------------------------------------------------------
 
 ## Installation:
 
-You dont need a special installation of any cocopods for this. You can use AVKit provided by Apple.
+You dont need a special installation of any cocopods for this. You can use AVFoundation provided by Apple.
 
 
 ----------------------------------------------------------------------------------------------------
 
 ## Configuration:
 
-No specific Configuration needed.
+You have to Include the description for Camera Usage permission in your Info.plist 
+
+```
+<key>NSCameraUsageDescription</key>
+<string>To Scan Qr Code and Bar Code</string>
+```
 
 ----------------------------------------------------------------------------------------------------
 
 ## Coding Part - Handler:
 
+There are two important section of this handler. (i) Initialization and Scanning
 
-### 
+### Initialization
 
 ```
-    class MediaPlayer {
+    func initializeCamera() {
+       
+        // Get an instance of the AVCaptureDevice class to initialize a
+       guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
+           fatalError("No video device found")
+       }
+                             
+       do {
         
-        static func openMedia(url:String,viewController:UIViewController) {
-            
-            guard let videoURL = URL(string: url) else {
-                return
-            }
-            
-            let player = AVPlayer(url: videoURL)
-            
-            let playerViewController = AVPlayerViewController()
-            playerViewController.player = player
+           // Get an instance of the AVCaptureDeviceInput class
+           let input = try AVCaptureDeviceInput(device: captureDevice)
+                  
 
-            viewController.present(playerViewController, animated: true) {
-              player.play()
+           captureSession = AVCaptureSession()
+                  
+           captureSession?.addInput(input)
+                  
+        
+           capturePhotoOutput = AVCapturePhotoOutput()
+           capturePhotoOutput?.isHighResolutionCaptureEnabled = true
+                  
+        
+           captureSession?.addOutput(capturePhotoOutput!)
+           captureSession?.sessionPreset = .high
+                  
+        
+           let captureMetadataOutput = AVCaptureMetadataOutput()
+           captureSession?.addOutput(captureMetadataOutput)
+                  
+        
+           captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+           captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
+                  
+    
+           videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
+           videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
+           videoPreviewLayer?.frame = view.layer.bounds
+           
+           //Setting the video layer over scanner view
+           scannerView.layer.addSublayer(videoPreviewLayer!)
+
+        
+           //start video capture
+           captureSession?.startRunning()
+                  
+       } catch {
+           //If any error occurs, simply print it out
+           print(error)
+           return
+       }
+    }
+```
+
+### Scanning
+
+```
+    func metadataOutput(_ captureOutput: AVCaptureMetadataOutput,
+                        didOutput metadataObjects: [AVMetadataObject],
+                        from connection: AVCaptureConnection) {
+        
+        if metadataObjects.count == 0 {
+            return
+        }
+        
+        let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
+        
+        if metadataObj.type == AVMetadataObject.ObjectType.qr {
+            if let outputString = metadataObj.stringValue {
+                DispatchQueue.main.async {
+                    self.delegate?.scannedResult(text: outputString)
+                    Router.closeViewController(viewController: self)
+                }
             }
         }
         
@@ -48,10 +111,16 @@ No specific Configuration needed.
 
 ----------------------------------------------------------------------------------------------------
 
+## Helper Part
+
+### Toast and Router is used for assisting the main functionality
+
+----------------------------------------------------------------------------------------------------
+
 ## Usage Part
 
-### Invoke this specific function to use in your View Controller
+### Invoke this specific function to use in your View Controller. Here,making use of Router to facilitate easy implementation
 
 ```
-    MediaPlayer.openMedia(url:videoURLString,viewController:self)
+    Router.navigateToQRScanner(parentViewController: self)
 ```

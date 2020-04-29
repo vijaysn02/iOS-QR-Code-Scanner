@@ -26,7 +26,6 @@ class QRScannerViewController: UIViewController {
     var captureSession: AVCaptureSession?
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     var capturePhotoOutput: AVCapturePhotoOutput?
-
     var delegate: QRScannerDelegate?
     
     override func viewDidLoad() {
@@ -43,44 +42,44 @@ class QRScannerViewController: UIViewController {
 extension QRScannerViewController {
     
     func initializeCamera() {
-       // Get an instance of the AVCaptureDevice class to initialize a
-       // device object and provide the video as the media type parameter
+       
+        // Get an instance of the AVCaptureDevice class to initialize a
        guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
            fatalError("No video device found")
        }
                              
        do {
-           // Get an instance of the AVCaptureDeviceInput class using the previous deivce object
+        
+           // Get an instance of the AVCaptureDeviceInput class
            let input = try AVCaptureDeviceInput(device: captureDevice)
                   
-           // Initialize the captureSession object
+
            captureSession = AVCaptureSession()
                   
-           // Set the input device on the capture session
            captureSession?.addInput(input)
                   
-           // Get an instance of ACCapturePhotoOutput class
+        
            capturePhotoOutput = AVCapturePhotoOutput()
            capturePhotoOutput?.isHighResolutionCaptureEnabled = true
                   
-           // Set the output on the capture session
+        
            captureSession?.addOutput(capturePhotoOutput!)
            captureSession?.sessionPreset = .high
                   
-           // Initialize a AVCaptureMetadataOutput object and set it as the input device
+        
            let captureMetadataOutput = AVCaptureMetadataOutput()
            captureSession?.addOutput(captureMetadataOutput)
                   
-           // Set delegate and use the default dispatch queue to execute the call back
+        
            captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
            captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
                   
-           //Initialise the video preview layer and add it as a sublayer to the viewPreview view's layer
+    
            videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
            videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
            videoPreviewLayer?.frame = view.layer.bounds
            
-           scannerView.isHidden = false
+           //Setting the video layer over scanner view
            scannerView.layer.addSublayer(videoPreviewLayer!)
 
         
@@ -102,14 +101,11 @@ extension QRScannerViewController:AVCapturePhotoCaptureDelegate, AVCaptureMetada
     func metadataOutput(_ captureOutput: AVCaptureMetadataOutput,
                         didOutput metadataObjects: [AVMetadataObject],
                         from connection: AVCaptureConnection) {
-        // Check if the metadataObjects array is contains at least one object.
+        
         if metadataObjects.count == 0 {
             return
         }
         
-        //self.captureSession?.stopRunning()
-        
-        // Get the metadata object.
         let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
         
         if metadataObj.type == AVMetadataObject.ObjectType.qr {
