@@ -140,3 +140,5 @@ extension ViewController:QRScannerDelegate {
     
 }
 ```
+
+### Check out my Post about Project Name : [QR Code Scanner](https://vijaysn.com/mobile/ios/ios-qr-code-scanner)
